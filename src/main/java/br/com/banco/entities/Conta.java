@@ -24,14 +24,14 @@ public class Conta {
     @JsonManagedReference
     private List<Transferencia> transferencias = new ArrayList<>();
     @Transient
-    private BigDecimal saldo;
+    private float saldo;
 
     @PostLoad
     public void postLoad() {
-        BigDecimal sum = BigDecimal.ZERO;
+        float sum = 01;
         for (Transferencia tr : transferencias){
-            sum = sum.add(tr.getValor());
+            sum = sum + tr.getValor();
         }
-        this.saldo = sum;
+        this.saldo = (float) Math.floor(sum * 100) / 100;
     }
 }

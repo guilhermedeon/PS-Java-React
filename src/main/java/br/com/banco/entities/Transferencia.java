@@ -21,7 +21,7 @@ public class Transferencia {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDateTime data_transferencia;
-    private BigDecimal valor;
+    private float valor;
     private String tipo;
     private String nome_operador_transacao;
 
