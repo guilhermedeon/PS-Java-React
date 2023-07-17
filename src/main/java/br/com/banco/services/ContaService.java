@@ -5,6 +5,8 @@ import br.com.banco.entities.DTO.ContaGetDTO;
 import br.com.banco.entities.DTO.ContaPostDTO;
 import br.com.banco.repositories.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,6 +26,10 @@ public class ContaService {
         }
         Conta c = new Conta(data);
         repo.save(c);
+    }
+
+    public List<ContaGetDTO> getAllContas(Pageable pageable){
+        return repo.findAll(pageable).stream().map(ContaGetDTO::new).collect(Collectors.toList());
     }
 
     public List<ContaGetDTO> getAllContas(){

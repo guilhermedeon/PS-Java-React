@@ -5,6 +5,8 @@ import br.com.banco.services.ContaService;
 import br.com.banco.services.TransferenciaService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +29,16 @@ public class MainController {
     public ResponseEntity deleteConta(@RequestBody Long id){
         contaService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("conta/page/")
+    public ResponseEntity getAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
+        return ResponseEntity.ok(contaService.getAllContas(pageable));
+    }
+
+    @GetMapping("conta/")
+    public ResponseEntity getAllUnpaged(){
+        return ResponseEntity.ok(contaService.getAllContas());
     }
 
 }
