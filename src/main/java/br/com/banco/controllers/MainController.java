@@ -7,6 +7,7 @@ import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,7 @@ public class MainController {
         return ResponseEntity.ok(contaService.getAllContas(pageable));
     }
 
-    @GetMapping("conta/")
+    @GetMapping("conta/todas/")
     public ResponseEntity getAllUnpaged(){
         return ResponseEntity.ok(contaService.getAllContas());
     }
