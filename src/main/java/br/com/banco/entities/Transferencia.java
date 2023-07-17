@@ -1,5 +1,6 @@
 package br.com.banco.entities;
 
+import br.com.banco.entities.DTO.TransferenciaPostDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
@@ -29,5 +30,12 @@ public class Transferencia {
     @JoinColumn(name = "conta_id")
     @JsonBackReference
     private Conta conta;
+
+    public Transferencia(TransferenciaPostDTO data){
+        this.data_transferencia = data.getData_transferencia();
+        this.valor = data.getValor();
+        this.tipo = data.getTipo();
+        this.data_transferencia = getData_transferencia();
+    }
 
 }
