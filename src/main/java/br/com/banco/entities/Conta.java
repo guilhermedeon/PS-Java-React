@@ -35,7 +35,7 @@ public class Conta {
 
     @PostLoad
     public void postLoad() {
-        float sum = 01;
+        float sum = 0;
         for (Transferencia tr : transferencias){
             sum = sum + tr.getValor();
         }
