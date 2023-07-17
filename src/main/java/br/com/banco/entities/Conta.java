@@ -1,5 +1,6 @@
 package br.com.banco.entities;
 
+import br.com.banco.entities.DTO.ContaPostDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -19,12 +20,18 @@ public class Conta {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id_conta;
-    private String nome_responsavel;
+    @Column (name = "nome_responsavel")
+    private String nomeResponsavel;
     @OneToMany(mappedBy = "conta")
     @JsonManagedReference
     private List<Transferencia> transferencias = new ArrayList<>();
     @Transient
     private float saldo;
+
+    public Conta(ContaPostDTO data){
+        this.nomeResponsavel = data.getNomeResponsavel();
+    }
+
 
     @PostLoad
     public void postLoad() {
