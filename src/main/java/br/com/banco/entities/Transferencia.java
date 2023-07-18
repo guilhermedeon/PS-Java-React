@@ -24,7 +24,8 @@ public class Transferencia {
     private LocalDateTime dataTransferencia;
     private float valor;
     private String tipo;
-    private String nome_operador_transacao;
+    @Column(name = "nome_operador_transacao")
+    private String nomeOperadorTransacao;
 
     @ManyToOne
     @JoinColumn(name = "conta_id")
@@ -32,7 +33,7 @@ public class Transferencia {
     private Conta conta;
 
     public Transferencia(TransferenciaPostDTO data){
-        this.dataTransferencia = data.getData_transferencia();
+        this.dataTransferencia = data.getDataTransferencia();
         this.valor = data.getValor();
         this.tipo = data.getTipo();
         this.dataTransferencia = getDataTransferencia();

@@ -14,16 +14,16 @@ import java.time.LocalDateTime;
 @Setter
 public class TransferenciaGetDTO {
     private Long id;
-    private String nome_operador_transacao;
+    private String nomeOperadorTransacao;
     private String tipo;
-    private LocalDateTime data_transferencia;
+    private LocalDateTime dataTransferencia;
     private long id_conta;
 
     public TransferenciaGetDTO(Transferencia transferencia){
         this.id = transferencia.getId();
-        this.nome_operador_transacao = transferencia.getNome_operador_transacao();
+        this.nomeOperadorTransacao = transferencia.getNomeOperadorTransacao();
         this.tipo = transferencia.getTipo();
-        this. data_transferencia = transferencia.getDataTransferencia();
+        this.dataTransferencia = transferencia.getDataTransferencia();
         this.id_conta = transferencia.getId();
     }
 
