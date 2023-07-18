@@ -35,7 +35,7 @@ public class TransferenciaController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity getById(Long id){
+    public ResponseEntity getById(@PathVariable Long id){
         return ResponseEntity.ok(service.getById(id));
     }
 
