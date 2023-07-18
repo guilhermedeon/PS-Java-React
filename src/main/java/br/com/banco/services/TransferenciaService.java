@@ -1,5 +1,6 @@
 package br.com.banco.services;
 
+import br.com.banco.entities.Conta;
 import br.com.banco.entities.DTO.TransferenciaGetDTO;
 import br.com.banco.entities.DTO.TransferenciaPostDTO;
 import br.com.banco.entities.Transferencia;
@@ -39,5 +40,12 @@ public class TransferenciaService {
     public List<TransferenciaGetDTO> getByData(LocalDateTime init, LocalDateTime end){
         return repo.getAllByDataTransferenciaBetween(init,end).stream().map(TransferenciaGetDTO::new).collect(Collectors.toList());
     }
+
+    public Optional<Transferencia> saveTransferencia(TransferenciaPostDTO dados){
+        Conta c = contaRepository.getById(dados.getIdConta());
+        Transferencia t = new Transferencia(dados);
+        t.setConta(c);
+        return Optional.of(repo.save(t));
+        }
 
 }

@@ -16,15 +16,13 @@ import java.time.LocalDateTime;
 public class TransferenciaPostDTO {
     private String nomeOperadorTransacao;
     private String tipo;
-    private LocalDateTime dataTransferencia;
     private Long idConta;
     private float valor;
 
-    public TransferenciaPostDTO(String nomeOperadorTransacao, String tipo, float valor, Conta conta){
+    public TransferenciaPostDTO(String nomeOperadorTransacao, String tipo, float valor, Long idConta){
         this.nomeOperadorTransacao = nomeOperadorTransacao;
         this.tipo = tipo;
-        this.dataTransferencia = LocalDateTime.now();
-        this.idConta = conta.getId_conta();
+        this.idConta = idConta;
         this.valor = valor;
     }
 

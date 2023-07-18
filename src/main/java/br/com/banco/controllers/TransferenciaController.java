@@ -1,7 +1,10 @@
 package br.com.banco.controllers;
 
+import br.com.banco.entities.Conta;
 import br.com.banco.entities.DTO.TransferenciaGetDTO;
 import br.com.banco.entities.DTO.TransferenciaPostDTO;
+import br.com.banco.entities.Transferencia;
+import br.com.banco.services.ContaService;
 import br.com.banco.services.TransferenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -20,14 +23,15 @@ public class TransferenciaController {
     @Autowired
     TransferenciaService service;
 
+
     @GetMapping("/")
     public ResponseEntity getAll(){
         return ResponseEntity.ok(service.getAll());
     }
 
-    @GetMapping("/page/")
-    public ResponseEntity getAllPaged(Pageable pageable){
-        return ResponseEntity.ok(service.getAllPaged(pageable));
+    @PostMapping("/")
+    public ResponseEntity newTransferencia(@RequestBody TransferenciaPostDTO dados, UriComponentsBuilder uriBuilder) {
+        return ResponseEntity.ok(service.saveTransferencia(dados));
     }
 
     @GetMapping("/id/{id}")
@@ -39,10 +43,12 @@ public class TransferenciaController {
     public ResponseEntity getByData(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime init, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime end){
         return ResponseEntity.ok(service.getByData(init,end));
     }
-    @PostMapping("/novo/")
-    public ResponseEntity newTransferencia(@RequestBody TransferenciaPostDTO dados, UriComponentsBuilder uriBuilder) {
-        return ResponseEntity.noContent().build();
+
+    @GetMapping("/page/")
+    public ResponseEntity getAllPaged(Pageable pageable){
+        return ResponseEntity.ok(service.getAllPaged(pageable));
     }
+
 
 
 }

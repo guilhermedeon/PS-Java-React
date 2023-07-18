@@ -33,10 +33,9 @@ public class Transferencia {
     private Conta conta;
 
     public Transferencia(TransferenciaPostDTO data){
-        this.dataTransferencia = data.getDataTransferencia();
+        this.dataTransferencia = LocalDateTime.now();
         this.valor = data.getValor();
         this.tipo = data.getTipo();
-        this.dataTransferencia = getDataTransferencia();
     }
 
 }
