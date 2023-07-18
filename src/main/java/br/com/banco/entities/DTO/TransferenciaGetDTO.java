@@ -1,6 +1,5 @@
 package br.com.banco.entities.DTO;
 
-import br.com.banco.entities.Conta;
 import br.com.banco.entities.Transferencia;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +23,7 @@ public class TransferenciaGetDTO {
         this.id = transferencia.getId();
         this.nome_operador_transacao = transferencia.getNome_operador_transacao();
         this.tipo = transferencia.getTipo();
-        this. data_transferencia = transferencia.getData_transferencia();
+        this. data_transferencia = transferencia.getDataTransferencia();
         this.id_conta = transferencia.getId();
     }
 
