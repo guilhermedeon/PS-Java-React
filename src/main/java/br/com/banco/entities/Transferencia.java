@@ -36,6 +36,7 @@ public class Transferencia {
         this.dataTransferencia = LocalDateTime.now();
         this.valor = data.getValor();
         this.tipo = data.getTipo();
+        this.nomeOperadorTransacao = data.getNomeOperadorTransacao();
     }
 
 }
