@@ -5,6 +5,7 @@ import br.com.banco.entities.DTO.TransferenciaPostDTO;
 import br.com.banco.services.TransferenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -33,8 +34,13 @@ public class TransferenciaController {
     public ResponseEntity getById(Long id){
         return ResponseEntity.ok(service.getById(id));
     }
+
+    @GetMapping("/data/")
+    public ResponseEntity getByData(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime init, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime end){
+        return ResponseEntity.ok(service.getByData(init,end));
+    }
     @PostMapping("/novo/")
-    public ResponseEntity newTransferencia(@RequestBody TransferenciaPostDTO dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity newTransferencia(@RequestBody TransferenciaPostDTO dados, UriComponentsBuilder uriBuilder) {
         return ResponseEntity.noContent().build();
     }
 

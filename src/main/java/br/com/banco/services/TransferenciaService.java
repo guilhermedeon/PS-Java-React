@@ -36,4 +36,8 @@ public class TransferenciaService {
         return Optional.of(new TransferenciaGetDTO(repo.findById(id).get()));
     }
 
+    public List<TransferenciaGetDTO> getByData(LocalDateTime init, LocalDateTime end){
+        return repo.getAllByDataTransferenciaBetween(init,end).stream().map(TransferenciaGetDTO::new).collect(Collectors.toList());
+    }
+
 }
