@@ -40,8 +40,8 @@ public class ContaService {
         return repo.findByNomeResponsavel(name);
     }
 
-    public Optional<Conta> getById (Long id){
-        return Optional.of(repo.getById(id));
+    public ContaGetDTO getById (Long id){
+        return new ContaGetDTO(Optional.of(repo.getById(id)).get());
     }
 
     public void deleteById(Long id){
