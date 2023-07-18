@@ -14,14 +14,14 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class TransferenciaPostDTO {
-    private String nome_operador_transacao;
+    private String nomeOperadorTransacao;
     private String tipo;
     private LocalDateTime dataTransferencia;
     private Long idConta;
     private float valor;
 
-    public TransferenciaPostDTO(String nome_operador_transacao, String tipo, float valor, Conta conta){
-        this.nome_operador_transacao = nome_operador_transacao;
+    public TransferenciaPostDTO(String nomeOperadorTransacao, String tipo, float valor, Conta conta){
+        this.nomeOperadorTransacao = nomeOperadorTransacao;
         this.tipo = tipo;
         this.dataTransferencia = LocalDateTime.now();
         this.idConta = conta.getId_conta();
