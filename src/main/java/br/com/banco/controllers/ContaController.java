@@ -11,32 +11,37 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/conta")
 public class ContaController {
 
     @Autowired
     ContaService contaService;
 
-    @PostMapping("conta/add/")
+    @PostMapping("/")
     public ResponseEntity novaConta(@RequestBody ContaPostDTO data){
         contaService.add(data);
         return ResponseEntity.ok(new ContaGetDTO(contaService.getByName(data.getNomeResponsavel()).get()));
     }
 
-    @DeleteMapping("conta/delete/")
+    @GetMapping("/")
+    public ResponseEntity getAllUnpaged(){
+        return ResponseEntity.ok(contaService.getAllContas());
+    }
+
+    @DeleteMapping("/delete/")
     public ResponseEntity deleteConta(@RequestBody Long id){
         contaService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("conta/page/")
-    public ResponseEntity getAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
-        return ResponseEntity.ok(contaService.getAllContas(pageable));
+    @GetMapping("/{id}/")
+    public ResponseEntity getById(@PathVariable Long id){
+        return ResponseEntity.ok(contaService.getById(id));
     }
 
-    @GetMapping("conta/todas/")
-    public ResponseEntity getAllUnpaged(){
-        return ResponseEntity.ok(contaService.getAllContas());
+    @GetMapping("/page/")
+    public ResponseEntity getAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
+        return ResponseEntity.ok(contaService.getAllContas(pageable));
     }
 
 }
